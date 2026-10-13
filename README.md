@@ -305,4 +305,4 @@ Hệ thống hướng đến các mục tiêu:
 # 8. Link GitHub
 
 **GitHub Repository:**  
-[Thêm link GitHub của project tại đây](LINK_GITHUB)
+[https://github.com/nguyentrunghieulawx-hue/CSE122_Commute-Match_team-6.git](LINK_GITHUB)
