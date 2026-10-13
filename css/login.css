@@ -1,9 +1,3 @@
-/* =====================================================
-   CommuteMatch — phần CSS viết thêm của HIEU
-   Bootstrap 5 đã lo: lưới (row/col), form, bảng, modal,
-   navbar. File này chỉ viết những gì Bootstrap chưa có.
-   ===================================================== */
-
 :root {
     --blue: #176B57;
     --blue-dark: #0D3F34;
@@ -34,7 +28,7 @@ a {
     text-decoration: none;
 }
 
-/* ======= THANH TRÊN CÙNG ======= */
+
 
 .cm-header {
     background: rgba(255, 255, 255, .94);
@@ -114,7 +108,7 @@ a {
     color: #fff;
 }
 
-/* ======= NÚT ======= */
+
 
 .cm-btn {
     border-radius: 10px;
@@ -190,7 +184,7 @@ a {
     font-size: 14px;
 }
 
-/* ======= TIÊU ĐỀ TRANG ======= */
+
 
 .cm-page-head {
     display: flex;
@@ -228,7 +222,7 @@ a {
     margin: 0;
 }
 
-/* ======= THẺ TRẮNG ======= */
+
 
 .cm-card {
     background: #fff;
@@ -281,7 +275,7 @@ a {
     color: var(--orange-dark);
 }
 
-/* ======= Ô SỐ LIỆU ======= */
+
 
 .cm-stat {
     position: relative;
@@ -325,7 +319,7 @@ a {
     color: var(--orange-dark);
 }
 
-/* ======= NHÃN TRẠNG THÁI ======= */
+
 
 .cm-badge {
     display: inline-flex;
@@ -358,7 +352,7 @@ a {
     color: #A8670A;
 }
 
-/* ======= DẢI TAB ======= */
+
 
 .cm-tabs {
     display: flex;
@@ -387,7 +381,7 @@ a {
     box-shadow: 0 3px 12px rgba(13, 47, 38, .08);
 }
 
-/* ======= DANH SÁCH DẠNG HÀNG ======= */
+
 
 .cm-stack {
     display: flex;
@@ -452,7 +446,7 @@ a {
     background: var(--orange);
 }
 
-/* ======= FORM ======= */
+
 
 .cm-form .form-label {
     font-weight: 600;
@@ -525,7 +519,7 @@ a {
     font-weight: 700;
 }
 
-/* ======= KHU GIỚI THIỆU TRANG CHỦ ======= */
+
 
 .cm-hero {
     display: grid;
@@ -618,7 +612,7 @@ a {
     color: #fff;
 }
 
-/* ======= TRANG ĐĂNG NHẬP / ĐĂNG KÝ ======= */
+
 
 .cm-auth {
     display: grid;
@@ -678,7 +672,7 @@ a {
     font-weight: 700;
 }
 
-/* ======= BẢN ĐỒ VÀ Ô SỐ NHỎ ======= */
+
 
 .cm-map {
     position: relative;
@@ -754,7 +748,7 @@ a {
     font-size: 13px;
 }
 
-/* ======= GIÁ TIỀN VÀ ĐIỂM AI ======= */
+
 
 .cm-price {
     font-family: "Baloo 2", sans-serif;
@@ -775,7 +769,7 @@ a {
     font-weight: 700;
 }
 
-/* ======= THÔNG BÁO NHỎ GÓC MÀN HÌNH ======= */
+
 
 .cm-toast {
     position: fixed;
@@ -798,7 +792,7 @@ a {
     opacity: 1;
 }
 
-/* ======= CHÂN TRANG ======= */
+
 
 .cm-footer {
     border-top: 1px solid var(--line);
@@ -808,7 +802,70 @@ a {
     margin-top: 40px;
 }
 
-/* ======= MÀN HÌNH NHỎ ======= */
+
+
+body.cm-dark {
+    --canvas: #081A15;
+    --ink: #EAF6F1;
+    --muted: #A7BBB3;
+    --line: #27483E;
+}
+
+body.cm-dark .cm-header {
+    background: rgba(8, 26, 21, .94);
+}
+
+body.cm-dark .cm-card,
+body.cm-dark .cm-row,
+body.cm-dark .cm-footer,
+body.cm-dark .cm-icon-btn,
+body.cm-dark .cm-role {
+    background: #102A22;
+    color: #EAF6F1;
+}
+
+body.cm-dark h1,
+body.cm-dark h2,
+body.cm-dark h3,
+body.cm-dark .cm-row-main h3,
+body.cm-dark .cm-nav-link {
+    color: #EAF6F1;
+}
+
+body.cm-dark .cm-title {
+    color: #8FD9BE;
+}
+
+body.cm-dark .form-control,
+body.cm-dark .form-select {
+    background: #0C211B;
+    border-color: #27483E;
+    color: #EAF6F1;
+}
+
+body.cm-dark .modal-content {
+    background: #102A22;
+    color: #EAF6F1;
+}
+
+body.cm-dark .cm-stat::after {
+    background: #173A30;
+}
+
+body.cm-dark .cm-tabs {
+    background: #0C211B;
+}
+
+body.cm-dark .cm-tab.active {
+    background: #173A30;
+    color: #8FD9BE;
+}
+
+body.cm-dark .cm-map {
+    background: #0C211B;
+}
+
+
 
 @media (max-width: 991.98px) {
     .cm-hero,
@@ -866,15 +923,19 @@ a {
     }
 }
 
-/* ======= PHẦN RIÊNG CỦA TRANG FORGOT-PASSWORD ======= */
 
-/* Trang quên mật khẩu: form ngắn, canh giữa */
 
-.cm-auth-card {
-    width: min(430px, 100%);
+
+
+.cm-auth-card h1 {
+    font-size: 28px;
 }
 
-/* ======= KHỐI MÃ OTP (demo: mã hiện thẳng lên màn hình) ======= */
+.cm-roles {
+    grid-template-columns: 1fr 1fr;
+}
+
+
 
 .cm-otp h1 {
     font-size: 26px;
@@ -967,7 +1028,27 @@ a {
     }
 }
 
-/* Màn hình thật nhỏ: ô mã và nút gửi lại xếp dọc */
+
+
+body.cm-dark .cm-otp-mail {
+    background: #0C211B;
+    border-color: #2A5346;
+}
+
+body.cm-dark .cm-otp-mail strong {
+    color: #EAF6F1;
+}
+
+body.cm-dark .cm-otp-mail-icon {
+    background: #173A30;
+    color: #8FD9BE;
+}
+
+body.cm-dark .cm-otp-code {
+    color: #8FD9BE;
+}
+
+
 
 @media (max-width: 420px) {
     .cm-otp-nhap {

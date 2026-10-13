@@ -20,6 +20,42 @@ Project gồm 9 trang:
 
 ---
 
+## 2.1. Cấu trúc thư mục
+
+```
+Hieu/
+├── *.html                  — 9 trang, đặt phẳng ở thư mục gốc
+├── assets/
+│   └── favicon.svg         — favicon dùng chung toàn site
+├── css/
+│   ├── style.css           — CSS dùng chung (thành phần mới + giao diện tối)
+│   └── <tên-trang>.css     — CSS riêng của từng trang
+└── js/
+    ├── main.js             — JS dùng chung (tìm kiếm, lọc, hộp thoại xác nhận, đổi giao diện)
+    └── <tên-trang>.js      — JS riêng của từng trang
+```
+
+Mọi trang đều nạp `assets/favicon.svg`, `css/style.css` và `js/main.js`;
+CSS/JS riêng của trang được nạp sau nên luôn ưu tiên hơn.
+
+## 2.2. Tính năng dùng chung (`js/main.js` + `css/style.css`)
+
+Các tính năng mới chỉ cần gắn thuộc tính `data-...` vào HTML, không phải viết JS riêng cho từng trang:
+
+- **Tìm kiếm**: ô nhập `[data-tim-kiem]` lọc tức thời các mục có `[data-tim-duoc]`.
+- **Lọc theo trạng thái**: dải `[data-nhom-loc]` chứa nút `[data-loc]`, lọc mục theo `[data-muc-loc]`, số đếm trên nút tự cập nhật.
+- **Hộp thoại xác nhận chung**: nút `[data-xac-nhan]` mở hộp thoại; khi bấm "Đồng ý" sẽ thực hiện:
+  - `data-hanh-dong="xoa"` — xóa phần tử khỏi trang (ví dụ xóa hành khách);
+  - `data-hanh-dong="doi-trang-thai"` — thay cụm nút bằng nhãn trạng thái mới, có thể kèm ô nhập lý do bắt buộc (`data-xac-nhan-nhap`, `data-bat-buoc`, `data-hien-ly-do`);
+  - `data-hanh-dong="doi-huy-hieu"` — đổi huy hiệu của chuyến (lưu trữ / hoàn thành / đã hủy).
+- **Thêm & xóa mục danh sách**: `[data-them-muc]` (thêm ghi chú ở trang chi tiết chuyến) và `[data-xoa-muc]`.
+- **Đổi giao diện sáng/tối**: nút `[data-doi-giao-dien]` trên header, lựa chọn được nhớ trong `localStorage` (khóa `cmTheme`, class `body.cm-dark`).
+- **Thông báo rỗng**: khi tìm kiếm/lọc không còn kết quả, tự hiện khối `[data-bao-trong]`.
+
+Đã áp dụng: `driver-join-requests.html` (tìm kiếm + lọc trạng thái, từ chối kèm lý do bắt buộc), `driver-schedule.html` (tìm kiếm + lọc, lưu trữ chuyến), `driver-trip-detail.html` (xóa hành khách, đánh dấu hoàn thành, hủy chuyến, thêm ghi chú). Nút đổi giao diện sáng/tối có ở header của cả 5 trang chính.
+
+---
+
 ## 3. Mục đích của trang
 
 Website được xây dựng nhằm hỗ trợ người dùng quản lý và tham gia các chuyến đi chung xe.

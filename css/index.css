@@ -502,7 +502,6 @@ a {
 }
 
 
-/* ======= KHU GIỚI THIỆU TRANG CHỦ ======= */
 
 .cm-hero {
     display: grid;
@@ -728,7 +727,6 @@ a {
 }
 
 
-/* ======= GIÁ TIỀN VÀ ĐIỂM AI ======= */
 
 .cm-price {
     font-family: "Baloo 2", sans-serif;
@@ -771,7 +769,6 @@ a {
 }
 
 
-/*CHÂN TRANG*/
 
 .cm-footer {
     border-top: 1px solid var(--line);
@@ -782,7 +779,6 @@ a {
 }
 
 
-/*GIAO DIỆN TỐI*/
 
 body.cm-dark {
     --canvas: #081A15;
@@ -846,7 +842,6 @@ body.cm-dark .cm-map {
 }
 
 
-/*MÀN HÌNH NHỎ*/
 
 @media (max-width: 991.98px) {
     .cm-hero,
