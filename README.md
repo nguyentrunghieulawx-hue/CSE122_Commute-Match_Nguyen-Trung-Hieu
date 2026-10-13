@@ -291,7 +291,7 @@ Hệ thống hướng đến các mục tiêu:
 # 6. Link Figma
 
 **Figma:**  
-[Thêm link Figma của project tại đây](LINK_FIGMA)
+[https://www.canva.com/design/DAHX3wOKyCI/sw8P6DbmcYXMu-p_yPIyNw/edit?ui=eyJBIjp7fX0](LINK_FIGMA)
 
 ---
 
