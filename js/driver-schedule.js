@@ -1,21 +1,27 @@
-document.addEventListener("DOMContentLoaded", function () {
 
-  var hopThongBao = document.getElementById("cmToast");
-  function hienThongBao(noiDung) {
-    if (!hopThongBao) return;
-    hopThongBao.textContent = noiDung || "Đã cập nhật thành công";
-    hopThongBao.classList.add("cm-toast-hien");
-    setTimeout(function () {
-      hopThongBao.classList.remove("cm-toast-hien");
-    }, 2300);
-  }
 
-  document.addEventListener("click", function (e) {
-    var nut = e.target.closest("[data-viec]");
-    if (!nut) return;
+document.addEventListener("DOMContentLoaded", function() {
 
-    if (nut.dataset.viec === "luu") {
-      hienThongBao();
+    /* ---------- Thông báo nhanh ở góc màn hình ---------- */
+    var hopThongBao = document.getElementById("cmToast");
+
+    function hienThongBao(noiDung) {
+        if (!hopThongBao) return;
+        hopThongBao.textContent = noiDung || "Đã cập nhật thành công";
+        hopThongBao.classList.add("cm-toast-hien");
+        setTimeout(function() {
+            hopThongBao.classList.remove("cm-toast-hien");
+        }, 2300);
     }
-  });
+
+    /* ---------- Một đầu xử lý click chung cho cả trang ---------- */
+    /* Mọi nút thao tác đều gắn thuộc tính data-viec="..." */
+    document.addEventListener("click", function(e) {
+        var nut = e.target.closest("[data-viec]");
+        if (!nut) return;
+
+        if (nut.dataset.viec === "luu") {
+            hienThongBao();
+        }
+    });
 });
