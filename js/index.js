@@ -33,11 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (h && trangCongKhai.indexOf(trangHienTai) < 0) {
         h.innerHTML = dS.map(function(m) {
-            return '<li class="nav-item"><a class="nav-link cm-nav-link' + (m[0] === trangHienTai ? " active" : "") + '" href="' + m[0] + '.html">' + m[1] + "</a></li>";
+            return '<li class="nav-item"><a class="nav-link cm-nav-link' + (m[0] === trangHienTai ? " active" : "") + '" href="' + duongDanTrang(m[0]) + '">' + m[1] + "</a></li>";
         }).join("");
-    }
-
-    if (localStorage.getItem("cmTheme") === "dark") {
-        document.body.classList.add("cm-dark");
     }
 });
