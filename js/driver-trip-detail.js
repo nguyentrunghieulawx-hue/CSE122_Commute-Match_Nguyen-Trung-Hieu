@@ -1,10 +1,3 @@
-/* =====================================================
-   CommuteMatch — Trang "Chi tiết chuyến tài xế" (phần JS của HIEU)
-   Hộp thoại đánh giá do Bootstrap mở/đóng (data-bs-toggle),
-   ở đây chỉ còn:
-   1. Hiện thông báo nhanh (toast) sau mỗi thao tác
-   2. Các nút data-viec="luu": đóng hộp thoại và báo thành công
-   ===================================================== */
 
 document.addEventListener("DOMContentLoaded", function() {
 
