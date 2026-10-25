@@ -1,9 +1,20 @@
+/* =====================================================
+   CommuteMatch — Trang "Đăng ký" (phần JS của HIEU)
+   Chức năng:
+   1. Bấm "Tạo tài khoản": kiểm tra thông tin rồi "gửi" mã OTP 6 chữ số
+      (chưa có backend nên mã được in thẳng lên màn hình)
+   2. Nhập đúng mã OTP: báo thành công rồi quay về trang đăng nhập
+   3. Có đếm ngược 60 giây mới được bấm "Gửi lại mã"
+   ===================================================== */
+
 document.addEventListener("DOMContentLoaded", function() {
 
+    /* ---------- Đường dẫn tới các trang khác ---------- */
     var denTrang = function(slug) {
-        return slug + ".html";
+        return duongDanTrang(slug);
     };
 
+    /* ---------- Các phần tử trên trang ---------- */
     var buocDangKy = document.getElementById("buocDangKy");
     var khoiOtp = document.getElementById("khoiOtp");
     var oHoTen = document.getElementById("oHoTen");
@@ -17,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var oNutGuiLai = document.getElementById("oNutGuiLai");
     var oChuGuiLai = document.getElementById("oChuGuiLai");
 
+    /* ---------- Hiện dòng thông báo nhỏ góc phải ---------- */
     var hopThongBao = document.getElementById("cmToast");
 
     function hienThongBao(noiDung) {
@@ -28,15 +40,18 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 1600);
     }
 
-    var GIAY_CHO_GUI_LAI = 60;
-    var maOtpHienTai = "";
-    var giayConLai = 0;
-    var dongHo = null;
+    /* ====== PHẦN MÃ OTP (chạy ngay trên trình duyệt, không cần máy chủ) ====== */
+    var GIAY_CHO_GUI_LAI = 60; /* số giây phải chờ trước khi được gửi lại mã */
+    var maOtpHienTai = ""; /* mã đang có hiệu lực */
+    var giayConLai = 0; /* số giây còn lại trên đồng hồ đếm ngược */
+    var dongHo = null; /* mã của setInterval, giữ lại để biết mà dừng */
 
+    /* Tạo ngẫu nhiên một mã gồm đúng 6 chữ số */
     function taoMaOtp() {
         return String(Math.floor(100000 + Math.random() * 900000));
     }
 
+    /* Chữ trên nút "Gửi lại": còn chờ thì đếm giây, hết chờ thì bấm được */
     function capNhatNutGuiLai() {
         var duocGuiLai = giayConLai <= 0;
         oNutGuiLai.disabled = !duocGuiLai;
@@ -61,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 1000);
     }
 
+    /* "Gửi" mã: bản demo in mã ra khung giả lập hộp thư ngay trên màn hình */
     function guiMaOtp() {
         maOtpHienTai = taoMaOtp();
         oMaOtpHien.textContent = maOtpHienTai;
@@ -71,11 +87,12 @@ document.addEventListener("DOMContentLoaded", function() {
         hienThongBao("Đã gửi mã OTP tới " + oEmailNhanMa.textContent);
     }
 
+    /* ---------- Dòng báo lỗi ngay dưới ô nhập mã ---------- */
     function hienLoiOtp(noiDung) {
         oOtpLoi.textContent = noiDung;
         oOtpLoi.classList.remove("d-none");
         khoiOtp.classList.remove("cm-otp-rung");
-        void khoiOtp.offsetWidth;
+        void khoiOtp.offsetWidth; /* nạp lại phần tử để hiệu ứng rung chạy tiếp */
         khoiOtp.classList.add("cm-otp-rung");
     }
 
@@ -85,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function() {
         khoiOtp.classList.remove("cm-otp-rung");
     }
 
+    /* ---------- Chuyển qua lại giữa bước 1 và bước 2 ---------- */
     function hienBuocOtp() {
         buocDangKy.classList.add("d-none");
         khoiOtp.classList.remove("d-none");
@@ -97,11 +115,13 @@ document.addEventListener("DOMContentLoaded", function() {
         buocDangKy.classList.remove("d-none");
     }
 
+    /* ---------- Ô nhập mã: chỉ cho gõ chữ số, tối đa 6 ký tự ---------- */
     oMaOtp.addEventListener("input", function() {
         this.value = this.value.replace(/\D/g, "").slice(0, 6);
         if (!oOtpLoi.classList.contains("d-none")) anLoiOtp();
     });
 
+    /* ---------- Bấm nút "Tạo tài khoản": kiểm tra rồi sang bước nhập mã ---------- */
     document.querySelector('[data-viec="dang-ky"]').addEventListener("click", function() {
         if (!oHoTen.value.trim()) {
             hienThongBao("Bạn chưa nhập họ và tên");
@@ -128,14 +148,17 @@ document.addEventListener("DOMContentLoaded", function() {
         guiMaOtp();
     });
 
+    /* ---------- Bấm nút "Gửi lại mã" ---------- */
     document.querySelector('[data-viec="gui-lai-otp"]').addEventListener("click", function() {
         guiMaOtp();
     });
 
+    /* ---------- Bấm nút "Quay lại" ---------- */
     document.querySelector('[data-viec="huy-otp"]').addEventListener("click", function() {
         hienBuocDangKy();
     });
 
+    /* ---------- Bấm nút "Xác nhận & Tạo tài khoản" ---------- */
     document.querySelector('[data-viec="xac-nhan-otp"]').addEventListener("click", function() {
         var maNhap = oMaOtp.value.trim();
 
@@ -155,8 +178,4 @@ document.addEventListener("DOMContentLoaded", function() {
             location.href = denTrang("login");
         }, 900);
     });
-
-    if (localStorage.getItem("cmTheme") === "dark") {
-        document.body.classList.add("cm-dark");
-    }
 });
