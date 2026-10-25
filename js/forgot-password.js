@@ -1,12 +1,3 @@
-/* =====================================================
-   CommuteMatch — Trang "Quên mật khẩu" (phần JS của HIEU)
-   Chức năng:
-   1. Bấm "Gửi mã đặt lại": tạo mã OTP 6 chữ số và hiện bước nhập mã
-      (chưa có backend nên mã được in thẳng lên màn hình)
-   2. Nhập đúng mã: cất mã vào sessionStorage rồi sang trang đặt lại mật khẩu
-      (trang sau đọc lại mã đó nên người dùng không phải nhớ mã)
-   3. Có đếm ngược 60 giây mới được bấm "Gửi lại mã"
-   ===================================================== */
 
 document.addEventListener("DOMContentLoaded", function() {
 
