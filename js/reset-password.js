@@ -1,13 +1,3 @@
-/* =====================================================
-   CommuteMatch — Trang "Đặt lại mật khẩu" (phần JS của HIEU)
-   Chức năng:
-   1. Mở trang: hiện lại mã OTP — lấy mã do trang "Quên mật khẩu" chuyển
-      qua sessionStorage, còn mở thẳng trang này thì tự tạo mã mới
-      (chưa có backend nên mã được in thẳng lên màn hình)
-   2. Bấm "Đặt lại mật khẩu": kiểm tra mã OTP và 2 ô mật khẩu,
-      xong báo thành công rồi về trang đăng nhập
-   3. Có đếm ngược 60 giây mới được bấm "Gửi lại mã"
-   ===================================================== */
 
 document.addEventListener("DOMContentLoaded", function() {
 
