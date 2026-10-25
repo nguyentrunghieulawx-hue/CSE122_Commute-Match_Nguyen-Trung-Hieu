@@ -1,11 +1,3 @@
-/* =====================================================
-   CommuteMatch — Trang "Đăng ký" (phần JS của HIEU)
-   Chức năng:
-   1. Bấm "Tạo tài khoản": kiểm tra thông tin rồi "gửi" mã OTP 6 chữ số
-      (chưa có backend nên mã được in thẳng lên màn hình)
-   2. Nhập đúng mã OTP: báo thành công rồi quay về trang đăng nhập
-   3. Có đếm ngược 60 giây mới được bấm "Gửi lại mã"
-   ===================================================== */
 
 document.addEventListener("DOMContentLoaded", function() {
 
