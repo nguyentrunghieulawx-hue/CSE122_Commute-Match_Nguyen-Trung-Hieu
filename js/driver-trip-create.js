@@ -1,11 +1,3 @@
-/* =====================================================
-   CommuteMatch — Trang "Tài xế tạo chuyến đi" (phần JS của HIEU)
-   Chức năng:
-   1. Đặt sẵn ngày hôm nay + giờ kế tiếp
-   2. Tóm tắt chuyến đi và gợi ý AI cập nhật ngay khi gõ
-   3. Kiểm tra form, lưu nháp, đăng chuyến (báo bằng toast)
-   4. Các nút data-viec: "luu" báo thành công, "nhap" lưu nháp
-   ===================================================== */
 
 document.addEventListener("DOMContentLoaded", function() {
 
