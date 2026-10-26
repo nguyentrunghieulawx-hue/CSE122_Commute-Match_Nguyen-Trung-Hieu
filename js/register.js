@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
 
     /* ---------- Đường dẫn tới các trang khác ---------- */
@@ -135,9 +134,26 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        oEmailNhanMa.textContent = oEmail.value.trim();
-        hienBuocOtp();
-        guiMaOtp();
+        /* Hỏi MockApi xem email đã có tài khoản chưa trước khi gửi mã */
+        var nutDangKy = this;
+        nutDangKy.disabled = true;
+        MockApi.kiemTraEmail(oEmail.value.trim())
+            .then(function(daCo) {
+                if (daCo) {
+                    hienThongBao("Email này đã được đăng ký, bạn hãy đăng nhập");
+                    oEmail.focus();
+                    return;
+                }
+                oEmailNhanMa.textContent = oEmail.value.trim();
+                hienBuocOtp();
+                guiMaOtp();
+            })
+            .catch(function(loi) {
+                hienThongBao(loi.message);
+            })
+            .then(function() {
+                nutDangKy.disabled = false;
+            });
     });
 
     /* ---------- Bấm nút "Gửi lại mã" ---------- */
@@ -165,9 +181,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
         dungDemNguoc();
         anLoiOtp();
-        hienThongBao("Tạo tài khoản thành công, đang về trang đăng nhập...");
-        setTimeout(function() {
-            location.href = denTrang("login");
-        }, 900);
+
+        /* Lưu tài khoản mới vào MockApi (ô vai trò: 0 = Hành khách, 1 = Người chia sẻ xe) */
+        MockApi.dangKy({
+                hoTen: oHoTen.value.trim(),
+                email: oEmail.value.trim(),
+                matKhau: oMatKhau.value,
+                vaiTro: document.getElementById("oVaiTro").selectedIndex === 1 ? "driver" : "rider"
+            })
+            .then(function() {
+                hienThongBao("Tạo tài khoản thành công, đang về trang đăng nhập...");
+                setTimeout(function() {
+                    location.href = denTrang("login");
+                }, 900);
+            })
+            .catch(function(loi) {
+                hienLoiOtp(loi.message);
+            });
     });
 });
